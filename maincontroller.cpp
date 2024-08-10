@@ -14,7 +14,7 @@ void MainController::pickPowerballNums(){
     //Seed the radom number generator.
     srand(static_cast<unsigned int>(time(0)));
 
-    //Generate a random number between 0 and 68 to dlect an element from the array.
+    //Generate a random number between 0 and 68 to select an element from the array.
     int randomArrayElementNum = 0 + (rand() % 68);
 
     //Check in the debug window to see if numbers are being generated properly.
