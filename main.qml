@@ -109,7 +109,6 @@ Window {
 
     }
 
-
     ComboBox {
                id: lottoType
                x: 155
@@ -117,7 +116,7 @@ Window {
                width: 152
                height: 21
                visible: true
-               model: [" Select Game", " Power Ball", " Mega Millions", " Super Lotto Plus", " Fantasy 5", " Daily 4", " Daily 3",]
+               model: [" Select Game", " Power Ball", " Mega Millions", " Super Lotto Plus", " Fantasy 5", " Daily 4", " Daily 3"]
 
                delegate: ItemDelegate {
                    width: lottoType.width
