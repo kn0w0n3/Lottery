@@ -52,6 +52,5 @@ void MainController::pickPowerballNums(){
         pb_Multi_Pick_Vector.clear();
         numPoolSizePrimary = 68;
     }
-
 }
 

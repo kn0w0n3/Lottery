@@ -5,7 +5,8 @@ QT += quickcontrols2
 
 SOURCES += \
         main.cpp \
-        maincontroller.cpp
+        maincontroller.cpp \
+        poweballthread.cpp
 
 resources.files = main.qml 
 resources.prefix = /$${TARGET}
@@ -24,4 +25,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    maincontroller.h
+    maincontroller.h \
+    poweballthread.h
