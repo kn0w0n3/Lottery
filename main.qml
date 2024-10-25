@@ -26,6 +26,21 @@ Window {
         color: "#000000"
         border.color: "#000000"
 
+        Image {
+            id: mainBackground
+            x: 0
+            y: 0
+            width: 900
+            height: 600
+
+            //For viewing in app
+            source: "/images/main-bg-900x600.png"
+
+            //For viewing in editor
+            //source: "images/main-bg-900x600.png"
+            fillMode: Image.PreserveAspectFit
+        }
+
         Rectangle {
             id: mainWin_Info_Win
             x: 155
@@ -107,6 +122,7 @@ Window {
             font.pixelSize: 12
         }
 
+
     }
 
     ComboBox {
@@ -116,7 +132,7 @@ Window {
                width: 152
                height: 21
                visible: true
-               model: [" Select Game", " Power Ball", " Mega Millions", " Super Lotto Plus", " Fantasy 5", " Daily 4", " Daily 3"]
+               model: [" Select Game", " Powerball", " Mega Millions", " Super Lotto Plus", " Fantasy 5", " Daily 4", " Daily 3"]
 
                delegate: ItemDelegate {
                    width: lottoType.width
