@@ -69,6 +69,9 @@ Window {
             width: 60
             height: 20
             text: qsTr("Start")
+            onClicked: {
+                mainController.pickPowerballNums();
+            }
         }
 
         Rectangle {
@@ -103,12 +106,15 @@ Window {
         }
 
         Button {
-            id: button
+            id: selectDirButton
             x: 155
             y: 382
             width: 60
             height: 20
             text: qsTr("Select")
+            onClicked: {
+                mainController.selectDirectory();
+            }
         }
 
         Text {

@@ -1,17 +1,20 @@
 #include "maincontroller.h"
 
 MainController::MainController(QWidget *parent) : QWidget(parent){
-    pickPowerballNums();
+
 }
 
 //Function to start powerball number pick thread.
 void MainController::pickPowerballNums(){
-
     powerballThread = new PowerballThread();
-    //connect(secEventCounterThread, &SecEventCounterThread::finished, this, &MainController::getSecDataJsonStatus);
-    //connect(secEventCounterThread, &SecEventCounterThread::secEventNum2MainContrler, this, &MainController::setNumberOfSecEvents);
-    //secEventCounterThread->setSaveType(saveType);
     powerballThread->start();
+}
 
+//Function to select a directory for storing number combination results.
+void MainController::selectDirectory(){
+    QString dir = QFileDialog::getExistingDirectory(Q_NULLPTR, tr("Select Directory"), "/home", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    s_SelectedDirectory = dir.trimmed();
+    //emit dirPathToQml(s_SelectedDirectory);
+    s_SelectedDirectory.clear();
 }
 
