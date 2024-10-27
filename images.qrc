@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>images/home_btn.png</file>
         <file>images/main-bg-900x600.png</file>
+        <file>images/check-btn.png</file>
     </qresource>
 </RCC>
