@@ -16,6 +16,10 @@ Window {
         //blastOutputText.text = _fileContents
         //scrollView.ScrollBar.vertical.position = 1.0 - scrollView.ScrollBar.vertical.size
         //}
+
+        onDirPathToQml:{
+            dirText.text = _dirPath;
+        }
     }
 
 
@@ -227,7 +231,7 @@ Window {
         }
 
         Text {
-            id: numTicketsTxt
+            id: numTicketsTxtLabel
             x: 229
             y: 405
             width: 165
@@ -238,13 +242,24 @@ Window {
         }
 
         Rectangle {
-            id: rectangle
+            id: directoryRect
             x: 229
             y: 382
             width: 526
             height: 20
             color: "#000000"
             border.color: "#ffffff"
+
+            Text {
+                id: dirText
+                x: 3
+                y: 2
+                width: 520
+                height: 16
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+            }
         }
 
         Button {

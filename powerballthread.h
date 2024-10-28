@@ -13,7 +13,7 @@ class PowerballThread : public QThread{
     Q_OBJECT
 
 public:
-    PowerballThread(QThread *parent = 0);
+    PowerballThread(QString, QThread *parent = 0);
     void run();
 
 signals:
@@ -31,7 +31,7 @@ private:
     int numPoolSizeSecondary = 25;
     int randomNumber = 0;
 
-    QString saveFilePath = "C:\\Users\\Voldem0rt\\Documents\\Qt_Projects\\Lottery\\";
+    QString saveFilePath;
     QString pb_Completed_Pick_Nums = "";
 
 
