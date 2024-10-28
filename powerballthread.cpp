@@ -13,12 +13,12 @@ void PowerballThread::run(){
 
     while(loopCount < 100){
         loopCount++;
-        QVector<int> pb_Multi_Pick_Vector = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-                                             16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
-                                             29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
-                                             42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54,
-                                             55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67,
-                                             68, 69};
+        QVector<QString> pb_Multi_Pick_Vector = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
+                                                 "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+                                                 "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41",
+                                                 "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54",
+                                                 "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67",
+                                                 "68", "69"};
 
         //PICK THE MAIN FIVE NUMBERS
         //Generate a random number between 0 and 68 to select an element from the vector of integers.
@@ -32,8 +32,9 @@ void PowerballThread::run(){
             randomNumber = 0 + (rand() % numPoolSizePrimary);
             numPoolSizePrimary--;
 
-            pb_Completed_Pick_Nums.append(pb_Multi_Pick_Vector.value(randomNumber));
-            qDebug() << "The random number placed in the vector is: " << pb_Multi_Pick_Vector.value(randomNumber);
+            //pb_Completed_Pick_Nums.append(pb_Multi_Pick_Vector.value(randomNumber));
+            pb_Completed_Pick_Nums.append(pb_Multi_Pick_Vector.value(randomNumber) + " ");
+            //qDebug() << "The random number placed in the string is: " << pb_Multi_Pick_Vector.value(randomNumber);
             pb_Multi_Pick_Vector.removeAt(randomNumber);
         }
 
@@ -42,13 +43,24 @@ void PowerballThread::run(){
             randomNumber = 0 + (rand() % numPoolSizeSecondary);
 
             pb_Completed_Pick_Nums.append(pb_Single_Pick_Vector.value(randomNumber));
-            qDebug() << "The random powerball number placed in the vector is: " << pb_Multi_Pick_Vector.value(randomNumber);
+            //qDebug() << "The random powerball number placed in the string is: " << pb_Multi_Pick_Vector.value(randomNumber);
         }
 
+        qDebug() << "The completed powerball number is: " << pb_Completed_Pick_Nums;
         //TODO: Save the numbers to a file. Probably need to be converted to a string.
+        QFile file(saveFilePath + "powerball_nums.txt");
+
+        if (file.open(QIODevice::Append | QIODevice::Text)) {
+            QTextStream out(&file);
+            out << pb_Completed_Pick_Nums + "\n";
+            file.close();
+        } else {
+            // Handle error, e.g., display an error message
+            qDebug() << "Error opening file:" << file.errorString();
+        }
 
         //Reset for next pick
-        pb_Completed_Pick_Nums.clear();
+        pb_Completed_Pick_Nums = "";
         pb_Multi_Pick_Vector.clear();
         numPoolSizePrimary = 68;
     }
