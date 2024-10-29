@@ -24,10 +24,12 @@ public:
 
 signals:
     void dirPathToQml(QString _dirPath);
+    void threadStatusToQml(QString _threadStatus);
 
 public slots:
     void pickPowerballNums();
     void selectDirectory();
+    void threadStatus(QString);
 
 private:
     PowerballThread *powerballThread;

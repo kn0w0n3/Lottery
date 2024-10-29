@@ -58,4 +58,5 @@ void PowerballThread::run(){
         numPoolSizePrimary = 68;
     }
     qDebug() << "Powerball number pick complete";
+    emit pbThreadStatus("Powerball Number Picks Complete");
 }

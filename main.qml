@@ -12,13 +12,12 @@ Window {
     Connections {
         target: mainController
 
-        //onSelectedFileDataToQml:{
-        //blastOutputText.text = _fileContents
-        //scrollView.ScrollBar.vertical.position = 1.0 - scrollView.ScrollBar.vertical.size
-        //}
-
         onDirPathToQml:{
             dirText.text = _dirPath;
+        }
+
+        onThreadStatusToQml:{
+            mainWinInfoText.text += _threadStatus + "\n"
         }
     }
 

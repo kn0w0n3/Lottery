@@ -17,6 +17,7 @@ public:
     void run();
 
 signals:
+    void pbThreadStatus(QString _pbThreadStatus);
 
 public slots:
 
