@@ -236,13 +236,18 @@ Window {
                 if(lottoType.currentText === " Select Game"){
                     mainWinInfoText.text += "Please select a game..." + "\n"
                 }
-                else if(lottoType.currentText === " Powerball"){
-                    if(dirText.text === ""){
-                        mainWinInfoText.text += "Please select a location to save results..." + "\n"
-                    }else{
+                else if(dirText.text === ""){
+                    mainWinInfoText.text += "Select a location to save results..." + "\n"
+                }
+                else if(numTicketsTxtInput.text === ""){
+                     mainWinInfoText.text += "Enter number of tickets to create..." + "\n"
+                }
+                else if(lottoType.currentText === " Powerball"){     
                         mainWinInfoText.text += "Powerball number picks starting..." + "\n"
-                        mainController.pickPowerballNums();
-                    }
+                        mainController.pickPowerballNums(numTicketsTxtInput.text);
+                }
+                else{
+                    mainWinInfoText.text += "There was an error..." + "\n"
                 }
             }
         }
@@ -251,10 +256,22 @@ Window {
             id: numTicketsRect
             x: 229
             y: 423
-            width: 77
+            width: 158
             height: 20
             color: "#000000"
             border.color: "#ffffff"
+
+            TextInput {
+                id: numTicketsTxtInput
+                x: 3
+                y: 2
+                width: 153
+                height: 16
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 10
+                rotation: 0
+            }
         }
 
         Text {

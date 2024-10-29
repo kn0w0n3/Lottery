@@ -3,18 +3,11 @@
 
 #include <QObject>
 #include <QWidget>
-
-//File Ops Libs
-//#include <QFile>
-//#include <QFileInfo>
 #include <QThread>
-//#include <QProcess>
 #include <QDebug>
-//#include <QVector>
 #include <QFileDialog>
 #include <QString>
 #include "powerballthread.h"
-
 
 class MainController:  public QWidget{
     Q_OBJECT
@@ -27,7 +20,7 @@ signals:
     void threadStatusToQml(QString _threadStatus);
 
 public slots:
-    void pickPowerballNums();
+    void pickPowerballNums(QString);
     void selectDirectory();
     void threadStatus(QString);
 
@@ -36,4 +29,5 @@ private:
     QString s_SelectedDirectory;
 
 };
+
 #endif // MAINCONTROLLER_H

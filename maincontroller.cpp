@@ -5,8 +5,8 @@ MainController::MainController(QWidget *parent) : QWidget(parent){
 }
 
 //Function to start powerball number pick thread.
-void MainController::pickPowerballNums(){
-    powerballThread = new PowerballThread(s_SelectedDirectory);
+void MainController::pickPowerballNums(QString numTickets){
+    powerballThread = new PowerballThread(s_SelectedDirectory, numTickets.toInt());
     connect(powerballThread, &PowerballThread::pbThreadStatus, this, &MainController::threadStatus);
     powerballThread->start();
 }
@@ -16,7 +16,6 @@ void MainController::selectDirectory(){
     QString dir = QFileDialog::getExistingDirectory(Q_NULLPTR, tr("Select Directory"), "/home", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
     s_SelectedDirectory = dir.trimmed();
     emit dirPathToQml(s_SelectedDirectory);
-    // s_SelectedDirectory.clear();
 }
 
 //Send the status of thread operations to qml

@@ -13,7 +13,7 @@ class PowerballThread : public QThread{
     Q_OBJECT
 
 public:
-    PowerballThread(QString, QThread *parent = 0);
+    PowerballThread(QString, int, QThread *parent = 0);
     void run();
 
 signals:
@@ -22,20 +22,17 @@ signals:
 public slots:
 
 private:
-    QVector<QString> pb_Single_Pick_Vector = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15",
-                                          "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"};
+    QVector<QString> pb_Single_Pick_Vector = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
+                                              "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"};
 
-    //QVector<QString> pb_Completed_Pick_Nums;
-
-    int loopCount = 0;
-    int numPoolSizePrimary = 68;
-    int numPoolSizeSecondary = 25;
-    int randomNumber = 0;
 
     QString saveFilePath;
     QString pb_Completed_Pick_Nums = "";
 
-
+    int loopCount = 0;
+    int numTicketsRequested;
+    int numPoolSizePrimary = 68;
+    int randomNumber = 0;
 };
 
 #endif // POWERBALLTHREAD_H
