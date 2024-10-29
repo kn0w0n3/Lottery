@@ -195,6 +195,23 @@ Window {
             height: 275
             color: "#000000"
             border.color: "#ffffff"
+
+            ScrollView {
+                id: scrollView
+                x: 3
+                y: 4
+                width: 594
+                height: 267
+                clip: true
+
+                TextArea {
+                    id: mainWinInfoText
+                    color: "#ffffff"
+                    font.pointSize: 10
+                    placeholderText: qsTr("Hello World")
+                    background: Rectangle {color: "black"}
+                }
+            }
         }
 
         Text {
@@ -216,7 +233,18 @@ Window {
             height: 20
             text: qsTr("Start")
             onClicked: {
-                mainController.pickPowerballNums();
+
+                if(lottoType.currentText === " Select Game"){
+                    mainWinInfoText.text += "Please select a game..." + "\n"
+                }
+                else if(lottoType.currentText === " Powerball"){
+                    if(dirText.text === ""){
+                        mainWinInfoText.text += "Please select a location to save results..." + "\n"
+                    }else{
+                        mainWinInfoText.text += "Powerball number picks starting..." + "\n"
+                        mainController.pickPowerballNums();
+                    }
+                }
             }
         }
 
