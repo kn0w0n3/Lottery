@@ -6,6 +6,7 @@ QT += quickcontrols2
 SOURCES += \
         main.cpp \
         maincontroller.cpp \
+        numbercheckthread.cpp \
         powerballthread.cpp
 
 resources.files = main.qml 
@@ -26,4 +27,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     maincontroller.h \
+    numbercheckthread.h \
     powerballthread.h

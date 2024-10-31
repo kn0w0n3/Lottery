@@ -17,11 +17,15 @@ public:
 
 signals:
     void dirPathToQml(QString _dirPath);
+    void nc_DirPathToQml(QString nc_dirPath);
+    void nc_filePathToQml(QString nc_FilePath);
     void threadStatusToQml(QString _threadStatus);
 
 public slots:
     void pickPowerballNums(QString);
     void selectDirectory();
+    void selectDirNumCheck();
+    void selectFileNumCheck();
     void threadStatus(QString);
 
 private:

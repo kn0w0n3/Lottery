@@ -17,7 +17,15 @@ Window {
         }
 
         onThreadStatusToQml:{
-            mainWinInfoText.text += _threadStatus + "\n"
+            mainWinInfoText.text += _threadStatus + "\n";
+        }
+
+        onNc_DirPathToQml:{
+            ctw_SelectDirTxt.text = nc_dirPath;
+        }
+
+        onNc_filePathToQml:{
+            ctw_SelectFileTxt.text = nc_FilePath;
         }
     }
 
@@ -203,6 +211,17 @@ Window {
             height: 20
             color: "#000000"
             border.color: "#ffffff"
+
+            Text {
+                id: ctw_SelectFileTxt
+                x: 3
+                y: 2
+                width: 511
+                height: 15
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+            }
         }
 
         Button {
@@ -212,6 +231,10 @@ Window {
             width: 71
             height: 20
             text: qsTr("Select File")
+
+            onClicked: {
+                mainController.selectFileNumCheck();
+            }
         }
 
         Text {
@@ -253,6 +276,17 @@ Window {
             height: 20
             color: "#000000"
             border.color: "#ffffff"
+
+            Text {
+                id: ctw_SelectDirTxt
+                x: 3
+                y: 2
+                width: 511
+                height: 15
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+            }
         }
 
         Button {
@@ -262,6 +296,9 @@ Window {
             width: 71
             height: 20
             text: qsTr("Select Dir")
+            onClicked: {
+                mainController.selectDirNumCheck()
+            }
         }
 
         Text {
@@ -697,6 +734,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0}D{i:25}D{i:26}D{i:2;invisible:true}
+    D{i:0}D{i:2;invisible:true}
 }
 ##^##*/

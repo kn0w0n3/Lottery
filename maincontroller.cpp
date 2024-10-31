@@ -42,8 +42,21 @@ void MainController::selectDirectory(){
     emit dirPathToQml(s_SelectedDirectory);
 }
 
+void MainController::selectDirNumCheck(){
+    QString dir = QFileDialog::getExistingDirectory(Q_NULLPTR, tr("Select Directory"), "/home", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    s_SelectedDirectory = dir.trimmed();
+    emit nc_DirPathToQml(s_SelectedDirectory);
+}
+
+void MainController::selectFileNumCheck(){
+    QString fileName = QFileDialog::getOpenFileName(nullptr, "Select File", QDir::homePath());
+    emit nc_filePathToQml(fileName);
+}
+
 //Send the status of thread operations to qml
 void MainController::threadStatus(QString s){
     emit threadStatusToQml(s);
 }
+
+
 
