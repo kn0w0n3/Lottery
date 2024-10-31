@@ -10,11 +10,6 @@ void PowerballThread::run(){
 
     //Seed the radom number generator.
     srand(static_cast<unsigned int>(time(0)));
-    //QFileInfo check_file(saveFilePath + "\\powerball_nums" + "-" + QString::number(fileNumber) + ".txt");
-    //if(check_file.exists()){
-       // fileNumber++;
-        // file = saveFilePath + "\\powerball_nums" + "-" + QString::number(fileNumber) + ".txt";
-   // }
     QString uniqueName = QUuid::createUuid().toString();
     QFile file(saveFilePath + "\\powerball_nums" + "-" + uniqueName + ".txt");
 
@@ -29,9 +24,9 @@ void PowerballThread::run(){
                                                  "68", "69"};
 
         //PICK THE MAIN FIVE NUMBERS
-        //Generate a random number between 0 and 68 to select an element from the vector of integers.
+        //Generate a random number between 0 and 68 to select an element from the vector.
         //The result should be a number between 1 and 69.
-        //That number will be removed and then a random number between 0 and 67 will be used.
+        //That number will be removed from the vector and then a random number between 0 and 67 will be used.
         //This will continue as numbers are picked.
         for(int i = 0; i < 5; i++){
             randomNumber = 0 + (rand() % numPoolSizePrimary);
@@ -45,16 +40,15 @@ void PowerballThread::run(){
         pb_Completed_Pick_Nums.append(pb_Single_Pick_Vector.value(randomNumber));
 
         //Save numbers to a file
-
         if (file.open(QIODevice::Append | QIODevice::Text)) {
             QTextStream out(&file);
             out << pb_Completed_Pick_Nums + "\n";
             file.close();
             QThread::msleep(100);
 
-        } else {
-            // Handle error, e.g., display an error message
+        } else{
             qDebug() << "Error opening file:" << file.errorString();
+            emit pbThreadStatus(file.errorString());
         }
 
         //Reset for next pick

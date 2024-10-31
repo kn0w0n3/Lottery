@@ -28,9 +28,7 @@ private:
     PowerballThread *powerballThread;
     QString s_SelectedDirectory;
     int numThreads = 0;
-    int remainderThread = 0;
     int remainderTickets = 0;
-
 };
 
 #endif // MAINCONTROLLER_H

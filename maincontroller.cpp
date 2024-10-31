@@ -13,7 +13,6 @@ void MainController::pickPowerballNums(QString numTickets){
         if((numThreads = numTickets.toInt() % 1000000) != 0){
             numThreads = (numTickets.toInt() / 1000000);
             qDebug() << "Num threads to create is: " << numThreads;
-            //remainderThread = 1;
             remainderTickets = numTickets.toInt() % 1000000;
 
         }
@@ -24,11 +23,9 @@ void MainController::pickPowerballNums(QString numTickets){
             connect(powerballThread, &PowerballThread::pbThreadStatus, this, &MainController::threadStatus);
             powerballThread->start();
         }
-
         powerballThread = new PowerballThread(s_SelectedDirectory, remainderTickets);
         connect(powerballThread, &PowerballThread::pbThreadStatus, this, &MainController::threadStatus);
         powerballThread->start();
-
     }
     else{
         powerballThread = new PowerballThread(s_SelectedDirectory, numTickets.toInt());
