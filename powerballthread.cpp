@@ -10,6 +10,14 @@ void PowerballThread::run(){
 
     //Seed the radom number generator.
     srand(static_cast<unsigned int>(time(0)));
+    //QFileInfo check_file(saveFilePath + "\\powerball_nums" + "-" + QString::number(fileNumber) + ".txt");
+    //if(check_file.exists()){
+       // fileNumber++;
+        // file = saveFilePath + "\\powerball_nums" + "-" + QString::number(fileNumber) + ".txt";
+   // }
+    QString uniqueName = QUuid::createUuid().toString();
+    QFile file(saveFilePath + "\\powerball_nums" + "-" + uniqueName + ".txt");
+
 
     while(loopCount != numTicketsRequested){
         loopCount++;
@@ -37,12 +45,13 @@ void PowerballThread::run(){
         pb_Completed_Pick_Nums.append(pb_Single_Pick_Vector.value(randomNumber));
 
         //Save numbers to a file
-        QFile file(saveFilePath + "\\powerball_nums.txt");
 
         if (file.open(QIODevice::Append | QIODevice::Text)) {
             QTextStream out(&file);
             out << pb_Completed_Pick_Nums + "\n";
             file.close();
+            QThread::msleep(100);
+
         } else {
             // Handle error, e.g., display an error message
             qDebug() << "Error opening file:" << file.errorString();
@@ -53,5 +62,6 @@ void PowerballThread::run(){
         pb_Multi_Pick_Vector.clear();
         numPoolSizePrimary = 68;
     }
+
     emit pbThreadStatus("Powerball Number Picks Complete");
 }

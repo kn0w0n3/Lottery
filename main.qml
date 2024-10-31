@@ -26,9 +26,25 @@ Window {
         id: checkTicketWin
         x: 0
         y: 0
-        width: 898
+        width: 900
         height: 600
         color: "#000000"
+
+        Image {
+            id: image
+            x: 0
+            y: 0
+            width: 900
+            height: 600
+
+            //For viewing in app
+            source: "/images/main-bg-900x600.png"
+
+            //For viewing in editor
+            //source: "images/main-bg-900x600.png"
+
+            fillMode: Image.PreserveAspectFit
+        }
 
         Text {
             id: windowTitle
@@ -42,7 +58,7 @@ Window {
         }
 
         Rectangle {
-            id: rectangle1
+            id: infoRect
             x: 155
             y: 90
             width: 600
@@ -53,80 +69,148 @@ Window {
 
 
         Rectangle {
-            id: rectangle3
-            x: 294
-            y: 449
-            width: 37
-            height: 32
+            id: num2Rect
+            x: 291
+            y: 492
+            width: 30
+            height: 25
             color: "#000000"
             border.color: "#ffffff"
+
+            TextEdit {
+                id: num2TxtEdit
+                x: 8
+                y: 2
+                width: 20
+                height: 18
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+                clip: true
+            }
         }
 
         Rectangle {
-            id: rectangle4
-            x: 349
-            y: 449
-            width: 37
-            height: 32
+            id: num3Rect
+            x: 346
+            y: 492
+            width: 30
+            height: 25
             color: "#000000"
             border.color: "#ffffff"
+
+            TextEdit {
+                id: textEdit
+                x: 8
+                y: 2
+                width: 20
+                height: 18
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+            }
         }
 
         Rectangle {
-            id: rectangle5
-            x: 405
-            y: 449
-            width: 37
-            height: 32
+            id: num4Rect
+            x: 402
+            y: 492
+            width: 30
+            height: 25
             color: "#000000"
             border.color: "#ffffff"
+
+            TextEdit {
+                id: num4TxtEdit
+                x: 8
+                y: 2
+                width: 20
+                height: 18
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+            }
         }
 
         Rectangle {
-            id: rectangle6
-            x: 461
-            y: 449
-            width: 37
-            height: 32
+            id: num5Rect
+            x: 458
+            y: 492
+            width: 30
+            height: 25
             color: "#000000"
             border.color: "#ffffff"
+
+            TextEdit {
+                id: num5TxtEdit
+                x: 8
+                y: 2
+                width: 20
+                height: 18
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+            }
         }
 
         Rectangle {
-            id: rectangle7
-            x: 517
-            y: 449
-            width: 37
-            height: 32
+            id: num6Rect
+            x: 514
+            y: 492
+            width: 30
+            height: 25
             color: "#000000"
             border.color: "#ffffff"
+
+            TextEdit {
+                id: num6TxtEdit
+                x: 8
+                y: 2
+                width: 20
+                height: 18
+                color: "#ff0000"
+                text: qsTr("")
+                font.pixelSize: 12
+            }
         }
         Rectangle {
-            id: rectangle2
-            x: 239
-            y: 449
-            width: 37
-            height: 32
+            id: num1Rect
+            x: 237
+            y: 492
+            width: 30
+            height: 25
             color: "#000000"
             border.color: "#ffffff"
+
+            TextEdit {
+                id: num1TxtEdit
+                x: 8
+                y: 2
+                width: 20
+                height: 18
+                color: "#ffffff"
+                text: qsTr("")
+                font.pixelSize: 12
+                clip: true
+            }
         }
 
         Rectangle {
-            id: rectangle8
+            id: selectFileRect
             x: 237
             y: 394
             width: 518
-            height: 25
+            height: 20
             color: "#000000"
             border.color: "#ffffff"
         }
 
         Button {
-            id: button
+            id: selectFileBtn
             x: 155
             y: 394
             width: 71
-            height: 26
+            height: 20
             text: qsTr("Select File")
         }
 
@@ -144,22 +228,131 @@ Window {
         Button {
             id: button1
             x: 239
-            y: 497
+            y: 536
             width: 71
-            height: 25
+            height: 20
             text: qsTr("Start")
         }
 
         Text {
             id: text3
             x: 239
-            y: 428
+            y: 469
             width: 137
-            height: 21
+            height: 20
             color: "#ffffff"
             text: qsTr("Enter winning numbers")
             font.pixelSize: 12
         }
+
+        Rectangle {
+            id: selectFileRect1
+            x: 237
+            y: 440
+            width: 518
+            height: 20
+            color: "#000000"
+            border.color: "#ffffff"
+        }
+
+        Button {
+            id: selectDirBtn
+            x: 155
+            y: 440
+            width: 71
+            height: 20
+            text: qsTr("Select Dir")
+        }
+
+        Text {
+            id: text4
+            x: 239
+            y: 420
+            width: 233
+            height: 21
+            color: "#ffffff"
+            text: qsTr("Select directory containing multiple files")
+            font.pixelSize: 12
+        }
+
+        ComboBox {
+            id: lottoType1
+            x: 155
+            y: 64
+            width: 152
+            height: 21
+            visible: true
+            contentItem: Text {
+                color: lottoType1.pressed ? "#FFFFFF" : "#FFFFFF"
+                text: lottoType1.displayText
+                elide: Text.ElideRight
+                verticalAlignment: Text.AlignVCenter
+                font: lottoType1.font
+                rightPadding: lottoType1.indicator.width + lottoType1.spacing
+                leftPadding: 0
+            }
+            popup: Popup {
+                y: lottoType1.height - 1
+                width: lottoType1.width
+                contentItem: ListView {
+                    ScrollIndicator.vertical: ScrollIndicator {
+                    }
+                    model: lottoType1.popup.visible ? lottoType1.delegateModel : null
+                    implicitHeight: contentHeight
+                    clip: true
+                    currentIndex: lottoType1.highlightedIndex
+                }
+                padding: 1
+                background: Rectangle {
+                    color: "#ffffff"
+                    radius: 5
+                    border.color: "#ffffff"
+                }
+                implicitHeight: contentItem.implicitHeight
+            }
+            delegate: ItemDelegate {
+                width: lottoType1.width
+                contentItem: Text {
+                    color: "#000000"
+                    text: lottoType1.textRole
+                                  ? (Array.isArray(lottoType1.model) ? modelData[lottoType1.textRole] : model[lottoType1.textRole])
+                                  : modelData
+                    elide: Text.ElideRight
+                    verticalAlignment: Text.AlignVCenter
+                    font: lottoType1.font
+                }
+                highlighted: lottoType1.highlightedIndex === index
+            }
+            background: Rectangle {
+                color: "#000000"
+                radius: 2
+                border.color: lottoType1.pressed ? "#FFFFFF" : "#FFFFFF"
+                border.width: lottoType1.visualFocus ? 2 : 1
+                implicitWidth: 120
+                implicitHeight: 40
+            }
+            indicator: Canvas {
+                x: lottoType1.width - width - lottoType1.rightPadding
+                y: lottoType1.topPadding + (lottoType1.availableHeight - height) / 2
+                width: 12
+                height: 8
+                Connections {
+                    target: lottoType1
+                }
+                contextType: "2d"
+                onPaint: {
+                            context.reset();
+                            context.moveTo(0, 0);
+                            context.lineTo(width, 0);
+                            context.lineTo(width / 2, height);
+                            context.closePath();
+                            context.fillStyle = lottoType1.pressed ? "#FFFFFF" : "#FFFFFF";
+                            context.fill();
+                        }
+            }
+            model: [" Select Game", " Powerball", " Mega Millions", " Super Lotto Plus", " Fantasy 5", " Daily 4", " Daily 3"]
+        }
+
     }
 
     Rectangle {
@@ -504,6 +697,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0}D{i:2;invisible:true}
+    D{i:0}D{i:25}D{i:26}D{i:2;invisible:true}
 }
 ##^##*/

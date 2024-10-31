@@ -4,10 +4,13 @@
 #include <QThread>
 #include <QObject>
 #include <QFile>
+#include <QFileInfo>
 #include <QTextStream>
 #include <QVector>
 #include <QDebug>
 #include <QString>
+#include <QUuid>
+
 
 class PowerballThread : public QThread{
     Q_OBJECT
@@ -33,6 +36,9 @@ private:
     int numTicketsRequested;
     int numPoolSizePrimary = 68;
     int randomNumber = 0;
+
+    int fileNumber = 0;
+    //QFile file;
 };
 
 #endif // POWERBALLTHREAD_H
