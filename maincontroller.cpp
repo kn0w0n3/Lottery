@@ -14,7 +14,6 @@ void MainController::pickPowerballNums(QString numTickets){
             numThreads = (numTickets.toInt() / 1000000);
             qDebug() << "Num threads to create is: " << numThreads;
             remainderTickets = numTickets.toInt() % 1000000;
-
         }
 
         //Create a thread for every 1 million tickets
@@ -42,21 +41,43 @@ void MainController::selectDirectory(){
     emit dirPathToQml(s_SelectedDirectory);
 }
 
+//Function to select a directory of files to check for winning numbers
 void MainController::selectDirNumCheck(){
     QString dir = QFileDialog::getExistingDirectory(Q_NULLPTR, tr("Select Directory"), "/home", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
     s_SelectedDirectory = dir.trimmed();
     emit nc_DirPathToQml(s_SelectedDirectory);
 }
 
+//Function to select a single file to check for winning numbers
 void MainController::selectFileNumCheck(){
     QString fileName = QFileDialog::getOpenFileName(nullptr, "Select File", QDir::homePath());
     emit nc_filePathToQml(fileName);
+}
+
+//Function to start the number checking thread
+void MainController::startNumCheckThread(QString n1, QString n2, QString n3, QString n4,
+                                         QString n5, QString n6, QString game, QString type,
+                                         QString path){
+
+    qDebug() << n1;
+    qDebug() << n2;
+    qDebug() << n3;
+    qDebug() << n4;
+    qDebug() << n5;
+    qDebug() << n6;
+    qDebug() << game;
+    qDebug() << type;
+    qDebug() << path;
+
+    //numberCheckThread = new NumberCheckThread();
+   //numberCheckThread->start();
 }
 
 //Send the status of thread operations to qml
 void MainController::threadStatus(QString s){
     emit threadStatusToQml(s);
 }
+
 
 
 

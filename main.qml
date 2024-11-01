@@ -66,13 +66,30 @@ Window {
         }
 
         Rectangle {
-            id: infoRect
+            id: checkNumInfoRect
             x: 155
             y: 90
             width: 600
             height: 275
             color: "#000000"
             border.color: "#ffffff"
+
+            ScrollView {
+                id: scrollView1
+                x: 3
+                y: 3
+                width: 593
+                height: 268
+
+                TextArea {
+                    id: checkNumsInfoWinTxt
+                    color: "#ffffff"
+                    text: ""
+                    clip: true
+                    placeholderText: qsTr("Text Area")
+                    background: Rectangle {color: "black"}
+                }
+            }
         }
 
 
@@ -108,7 +125,7 @@ Window {
             border.color: "#ffffff"
 
             TextEdit {
-                id: textEdit
+                id: num3TxtEdit
                 x: 8
                 y: 2
                 width: 20
@@ -221,6 +238,7 @@ Window {
                 color: "#ffffff"
                 text: qsTr("")
                 font.pixelSize: 12
+                clip: true
             }
         }
 
@@ -249,12 +267,44 @@ Window {
         }
 
         Button {
-            id: button1
+            id: checkNumsStartBtn
             x: 239
             y: 536
             width: 71
             height: 20
             text: qsTr("Start")
+
+            onClicked: {
+                if(lottoType1.currentText === " Select Game"){
+                    checkNumsInfoWinTxt.text += "Select game type..." + "\n";
+                }
+                else if(ctw_SelectDirTxt.text === "" && ctw_SelectFileTxt.text === ""){
+                    checkNumsInfoWinTxt.text += "Select file or dir containing multiple files..." + "\n";
+                }
+                else if(lottoType1.currentText === " Powerball"){
+                    if(num1TxtEdit.text === "" || num2TxtEdit.text === "" || num3TxtEdit.text === "" ||
+                       num4TxtEdit.text === "" || num5TxtEdit.text === "" || num6TxtEdit.text === ""){
+                        checkNumsInfoWinTxt.text += "Input winning numbers..." + "\n";
+                    }
+                    else{
+                        if(ctw_SelectDirTxt.text !== ""){
+                            mainController.startNumCheckThread(num1TxtEdit.text, num2TxtEdit.text, num3TxtEdit.text,
+                                                               num4TxtEdit.text, num5TxtEdit.text, num6TxtEdit.text,
+                                                               "Power Ball", "dir", ctw_SelectDirTxt.text);
+                            checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
+                        }
+                        else{
+                            mainController.startNumCheckThread(num1TxtEdit.text, num2TxtEdit.text, num3TxtEdit.text,
+                                                               num4TxtEdit.text, num5TxtEdit.text, num6TxtEdit.text,
+                                                               "Power Ball", "file", ctw_SelectFileTxt.text);
+                            checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
+                        }
+                    }
+                }
+                else if(lottoType1.currentText === " Mega Millions"){
+                    //Do something
+                }
+            }
         }
 
         Text {
@@ -286,6 +336,7 @@ Window {
                 color: "#ffffff"
                 text: qsTr("")
                 font.pixelSize: 12
+                clip: true
             }
         }
 
@@ -734,6 +785,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0}D{i:2;invisible:true}
+    D{i:0}D{i:42;invisible:true}
 }
 ##^##*/
