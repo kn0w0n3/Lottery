@@ -290,13 +290,13 @@ Window {
                         if(ctw_SelectDirTxt.text !== ""){
                             mainController.startNumCheckThread(num1TxtEdit.text, num2TxtEdit.text, num3TxtEdit.text,
                                                                num4TxtEdit.text, num5TxtEdit.text, num6TxtEdit.text,
-                                                               "Power Ball", "dir", ctw_SelectDirTxt.text);
+                                                               "Powerball", "dir", ctw_SelectDirTxt.text);
                             checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
                         }
                         else{
                             mainController.startNumCheckThread(num1TxtEdit.text, num2TxtEdit.text, num3TxtEdit.text,
                                                                num4TxtEdit.text, num5TxtEdit.text, num6TxtEdit.text,
-                                                               "Power Ball", "file", ctw_SelectFileTxt.text);
+                                                               "Powerball", "singleFile", ctw_SelectFileTxt.text);
                             checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
                         }
                     }

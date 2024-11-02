@@ -69,8 +69,8 @@ void MainController::startNumCheckThread(QString n1, QString n2, QString n3, QSt
     qDebug() << type;
     qDebug() << path;
 
-    //numberCheckThread = new NumberCheckThread();
-   //numberCheckThread->start();
+    numberCheckThread = new NumberCheckThread(n1, n2, n3, n4, n5, n6, game, type, path);
+    numberCheckThread->start();
 }
 
 //Send the status of thread operations to qml
