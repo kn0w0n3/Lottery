@@ -21,6 +21,7 @@ signals:
     void nc_DirPathToQml(QString nc_dirPath);
     void nc_filePathToQml(QString nc_FilePath);
     void threadStatusToQml(QString _threadStatus);
+    void ncthreadStatusToQml(QString nc_threadStatus);
 
 public slots:
     void pickPowerballNums(QString);
@@ -30,6 +31,7 @@ public slots:
     void startNumCheckThread(QString, QString, QString, QString,
                              QString, QString, QString, QString, QString);
     void threadStatus(QString);
+    void ncThreadStatus(QString);
 
 private:
     PowerballThread *powerballThread;

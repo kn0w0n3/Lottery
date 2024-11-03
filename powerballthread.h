@@ -28,7 +28,6 @@ private:
     QVector<QString> pb_Single_Pick_Vector = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
                                               "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"};
 
-
     QString saveFilePath;
     QString pb_Completed_Pick_Nums = "";
 
@@ -36,9 +35,6 @@ private:
     int numTicketsRequested;
     int numPoolSizePrimary = 68;
     int randomNumber = 0;
-
-    int fileNumber = 0;
-    //QFile file;
 };
 
 #endif // POWERBALLTHREAD_H

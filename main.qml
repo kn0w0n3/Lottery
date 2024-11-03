@@ -27,6 +27,9 @@ Window {
         onNc_filePathToQml:{
             ctw_SelectFileTxt.text = nc_FilePath;
         }
+        onNcthreadStatusToQml:{
+            checkNumsInfoWinTxt.text += nc_threadStatus + "\n"
+        }
     }
 
 
@@ -438,7 +441,7 @@ Window {
                             context.fill();
                         }
             }
-            model: [" Select Game", " Powerball", " Mega Millions", " Super Lotto Plus", " Fantasy 5", " Daily 4", " Daily 3"]
+            model: [" Select Game", " Powerball", " Mega Millions", " Super Lotto Plus", " Fantasy 5"]
         }
 
     }
@@ -617,7 +620,7 @@ Window {
             width: 152
             height: 21
             visible: true
-            model: [" Select Game", " Powerball", " Mega Millions", " Super Lotto Plus", " Fantasy 5", " Daily 4", " Daily 3"]
+            model: [" Select Game", " Powerball", " Mega Millions", " Super Lotto Plus", " Fantasy 5"]
 
             delegate: ItemDelegate {
                 width: lottoType.width
@@ -785,6 +788,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0}D{i:42;invisible:true}
+    D{i:0}D{i:2;invisible:true}
 }
 ##^##*/

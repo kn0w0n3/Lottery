@@ -10,10 +10,14 @@ void MainController::pickPowerballNums(QString numTickets){
     if(numTickets.toInt() > 1000000){
         qDebug() << "Num tickets greater than 1 million";
 
-        if((numThreads = numTickets.toInt() % 1000000) != 0){
+        if((numTickets.toInt() % 1000000) != 0){
             numThreads = (numTickets.toInt() / 1000000);
             qDebug() << "Num threads to create is: " << numThreads;
             remainderTickets = numTickets.toInt() % 1000000;
+        }
+        else{
+            numThreads = (numTickets.toInt() / 1000000);
+            qDebug() << "Num threads to create is: " << numThreads;
         }
 
         //Create a thread for every 1 million tickets
@@ -70,12 +74,17 @@ void MainController::startNumCheckThread(QString n1, QString n2, QString n3, QSt
     qDebug() << path;
 
     numberCheckThread = new NumberCheckThread(n1, n2, n3, n4, n5, n6, game, type, path);
+    connect(numberCheckThread, &NumberCheckThread::ncThreadStatus, this, &MainController::ncThreadStatus);
     numberCheckThread->start();
 }
 
 //Send the status of thread operations to qml
 void MainController::threadStatus(QString s){
     emit threadStatusToQml(s);
+}
+
+void MainController::ncThreadStatus(QString s){
+    emit ncthreadStatusToQml(s);
 }
 
 

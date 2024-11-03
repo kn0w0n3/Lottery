@@ -44,11 +44,11 @@ void PowerballThread::run(){
             QTextStream out(&file);
             out << pb_Completed_Pick_Nums + "\n";
             file.close();
-            QThread::msleep(100);
+            //QThread::msleep(1);
 
         } else{
-            qDebug() << "Error opening file:" << file.errorString();
-            emit pbThreadStatus(file.errorString());
+           // qDebug() << "Error opening file:" << file.errorString();
+            //emit pbThreadStatus(file.errorString());
         }
 
         //Reset for next pick
