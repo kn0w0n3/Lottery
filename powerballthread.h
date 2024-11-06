@@ -10,7 +10,7 @@
 #include <QDebug>
 #include <QString>
 #include <QUuid>
-
+#include <QDateTime>
 
 class PowerballThread : public QThread{
     Q_OBJECT

@@ -44,7 +44,6 @@ void PowerballThread::run(){
             QTextStream out(&file);
             out << pb_Completed_Pick_Nums + "\n";
             file.close();
-            //QThread::msleep(1);
 
         } else{
            // qDebug() << "Error opening file:" << file.errorString();
@@ -57,5 +56,8 @@ void PowerballThread::run(){
         numPoolSizePrimary = 68;
     }
 
-    emit pbThreadStatus("Powerball Number Picks Complete");
+    //Check thread status instead? Files are still being written after completion message
+    QDateTime dateTime = dateTime.currentDateTime();
+    QString dateTimeString = dateTime.toString("yyyy-MM-dd h:mm:ss ap");
+    emit pbThreadStatus("Powerball Number Picks Completed @ " + dateTimeString);
 }

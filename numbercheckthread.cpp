@@ -1,7 +1,5 @@
 #include "numbercheckthread.h"
 
-
-
 NumberCheckThread::NumberCheckThread(QString n1, QString n2, QString n3,
                                      QString n4, QString n5, QString n6,
                                      QString gN, QString fT, QString path,
@@ -27,10 +25,93 @@ void NumberCheckThread::run(){
 
                 while (!in.atEnd()) {
                     line = in.readLine();
-                    qDebug() << line; // Or do something else with the line
+                    //qDebug() << line; // Or do something else with the line
+                    QStringList numbersToCheck = line.split(" ");
+                    foreach (const QString &num, numbersToCheck) {
+                        curNum++;
+                        if(curNum == 1){
+                            for(int i = 0; i < 5; i++){
+                                if(num == winningNumbers.at(i)){
+                                    primaryMatch++;
+                                }
+                            }
+                        }
+                        else if(curNum == 2){
+                            for(int i = 0; i < 5; i++){
+                                if(num == winningNumbers.at(i)){
+                                    primaryMatch++;
+                                }
+                            }
+                        }
+                        else if(curNum == 3){
+                            for(int i = 0; i < 5; i++){
+                                if(num == winningNumbers.at(i)){
+                                    primaryMatch++;
+                                }
+                            }
+                        }
+                        else if(curNum == 4){
+                            for(int i = 0; i < 5; i++){
+                                if(num == winningNumbers.at(i)){
+                                    primaryMatch++;
+                                }
+                            }
+                        }
+                        else if(curNum == 5){
+                            for(int i = 0; i < 5; i++){
+                                if(num == winningNumbers.at(i)){
+                                    primaryMatch++;
+                                }
+                            }
+                        }
+                        else if(curNum == 6){
+                            if(num == winningNumbers.at(5)){
+                                powerBallMatch++;
+                            }
+                        }
+                    }
+                    if((powerBallMatch == 1) && (primaryMatch == 0)){
+                        powerballOnlyMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 1) && (primaryMatch == 1)){
+                        onePlusPBMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 1) && (primaryMatch == 2)){
+                        twoPlusPBMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 0) && (primaryMatch == 3)){
+                        threeNumMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 1) && (primaryMatch == 3)){
+                        threePlusPBMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 0) && (primaryMatch == 4)){
+                        fourMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 1) && (primaryMatch == 4)){
+                        fourPlusPBMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 0) && (primaryMatch == 5)){
+                        fiveMatch++;
+                        totalWinningTickets++;
+                    }
+                    else if((powerBallMatch == 1) && (primaryMatch == 5)){
+                        fivePlusPBMatch++;
+                        totalWinningTickets++;
+                    }
+                    primaryMatch = 0;
+                    powerBallMatch = 0;
+                    curNum = 0;
                 }
-
                 file.close();
+
             } else {
                 qDebug() << "Error opening file!";
             }
@@ -160,4 +241,7 @@ void NumberCheckThread::run(){
     emit ncThreadStatus("Four plus Powerball match: " + QString::number(fourPlusPBMatch));
     emit ncThreadStatus("Five number match: " + QString::number(fiveMatch));
     emit ncThreadStatus("Five plus Powerball match: " + QString::number(fivePlusPBMatch));
+    QDateTime dateTime = dateTime.currentDateTime();
+    QString dateTimeString = dateTime.toString("yyyy-MM-dd h:mm:ss ap");
+    emit ncThreadStatus("Number check complete @ " + dateTimeString);
 }

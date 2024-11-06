@@ -6,6 +6,9 @@ MainController::MainController(QWidget *parent) : QWidget(parent){
 
 //Function to start powerball number pick thread.
 void MainController::pickPowerballNums(QString numTickets){
+    QDateTime dateTime = dateTime.currentDateTime();
+    QString dateTimeString = dateTime.toString("yyyy-MM-dd h:mm:ss ap");
+    threadStatus("Powerball number picks started @ " + dateTimeString);
 
     if(numTickets.toInt() > 1000000){
         qDebug() << "Num tickets greater than 1 million";
@@ -63,19 +66,13 @@ void MainController::startNumCheckThread(QString n1, QString n2, QString n3, QSt
                                          QString n5, QString n6, QString game, QString type,
                                          QString path){
 
-    qDebug() << n1;
-    qDebug() << n2;
-    qDebug() << n3;
-    qDebug() << n4;
-    qDebug() << n5;
-    qDebug() << n6;
-    qDebug() << game;
-    qDebug() << type;
-    qDebug() << path;
-
     numberCheckThread = new NumberCheckThread(n1, n2, n3, n4, n5, n6, game, type, path);
     connect(numberCheckThread, &NumberCheckThread::ncThreadStatus, this, &MainController::ncThreadStatus);
     numberCheckThread->start();
+
+    QDateTime dateTime = dateTime.currentDateTime();
+    QString dateTimeString = dateTime.toString("yyyy-MM-dd h:mm:ss ap");
+    ncThreadStatus("Number check started @ " + dateTimeString);
 }
 
 //Send the status of thread operations to qml

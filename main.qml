@@ -294,13 +294,13 @@ Window {
                             mainController.startNumCheckThread(num1TxtEdit.text, num2TxtEdit.text, num3TxtEdit.text,
                                                                num4TxtEdit.text, num5TxtEdit.text, num6TxtEdit.text,
                                                                "Powerball", "dir", ctw_SelectDirTxt.text);
-                            checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
+                            //checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
                         }
                         else{
                             mainController.startNumCheckThread(num1TxtEdit.text, num2TxtEdit.text, num3TxtEdit.text,
                                                                num4TxtEdit.text, num5TxtEdit.text, num6TxtEdit.text,
                                                                "Powerball", "singleFile", ctw_SelectFileTxt.text);
-                            checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
+                            //checkNumsInfoWinTxt.text += "Check powerball numbers starting..." + "\n";
                         }
                     }
                 }
@@ -527,11 +527,11 @@ Window {
                      mainWinInfoText.text += "Enter number of tickets to create..." + "\n"
                 }
                 else if(lottoType.currentText === " Powerball"){     
-                        mainWinInfoText.text += "Powerball number picks starting..." + "\n"
+                        //mainWinInfoText.text += "Powerball number picks starting..." + "\n"
                         mainController.pickPowerballNums(numTicketsTxtInput.text);
                 }
                 else{
-                    mainWinInfoText.text += "There was an error..." + "\n"
+                    mainWinInfoText.text += "An error occurred..." + "\n"
                 }
             }
         }

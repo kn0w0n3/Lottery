@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QString>
+#include <QDateTime>
 #include "powerballthread.h"
 #include "numbercheckthread.h"
 
