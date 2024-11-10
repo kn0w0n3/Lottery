@@ -7,6 +7,7 @@ SOURCES += \
         main.cpp \
         maincontroller.cpp \
         megamillionsthread.cpp \
+        meganumcheckthread.cpp \
         numbercheckthread.cpp \
         powerballthread.cpp
 
@@ -29,5 +30,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     maincontroller.h \
     megamillionsthread.h \
+    meganumcheckthread.h \
     numbercheckthread.h \
     powerballthread.h

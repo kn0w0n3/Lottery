@@ -4,6 +4,8 @@ import QtQuick.Controls 2.15
 Window {
     width: 900
     height: 600
+    maximumWidth: 900
+    maximumHeight: 600
     visible: true
     color: "#000000"
     title: qsTr("Lottery")
@@ -15,15 +17,12 @@ Window {
         onDirPathToQml:{
             dirText.text = _dirPath;
         }
-
         onThreadStatusToQml:{
             mainWinInfoText.text += _threadStatus + "\n";
         }
-
         onNc_DirPathToQml:{
             ctw_SelectDirTxt.text = nc_dirPath;
         }
-
         onNc_filePathToQml:{
             ctw_SelectFileTxt.text = nc_FilePath;
         }
@@ -529,6 +528,10 @@ Window {
                 else if(lottoType.currentText === " Powerball"){     
                         //mainWinInfoText.text += "Powerball number picks starting..." + "\n"
                         mainController.pickPowerballNums(numTicketsTxtInput.text);
+                }
+                else if(lottoType.currentText === " Mega Millions"){
+                        //mainWinInfoText.text += "Powerball number picks starting..." + "\n"
+                        mainController.pickMegaMillionsNums(numTicketsTxtInput.text);
                 }
                 else{
                     mainWinInfoText.text += "An error occurred..." + "\n"

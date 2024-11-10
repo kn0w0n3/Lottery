@@ -11,16 +11,13 @@ void MainController::pickPowerballNums(QString numTickets){
     threadStatus("Powerball number picks started @ " + dateTimeString);
 
     if(numTickets.toInt() > 1000000){
-        qDebug() << "Num tickets greater than 1 million";
 
         if((numTickets.toInt() % 1000000) != 0){
             numThreads = (numTickets.toInt() / 1000000);
-            qDebug() << "Num threads to create is: " << numThreads;
             remainderTickets = numTickets.toInt() % 1000000;
         }
         else{
             numThreads = (numTickets.toInt() / 1000000);
-            qDebug() << "Num threads to create is: " << numThreads;
         }
 
         //Create a thread for every 1 million tickets
@@ -38,7 +35,38 @@ void MainController::pickPowerballNums(QString numTickets){
         connect(powerballThread, &PowerballThread::pbThreadStatus, this, &MainController::threadStatus);
         powerballThread->start();
     }
+}
 
+void MainController::pickMegaMillionsNums(QString numTickets){
+    QDateTime dateTime = dateTime.currentDateTime();
+    QString dateTimeString = dateTime.toString("yyyy-MM-dd h:mm:ss ap");
+    threadStatus("Mega Millions number picks started @ " + dateTimeString);
+
+    if(numTickets.toInt() > 1000000){
+
+        if((numTickets.toInt() % 1000000) != 0){
+            numThreads = (numTickets.toInt() / 1000000);
+            remainderTickets = numTickets.toInt() % 1000000;
+        }
+        else{
+            numThreads = (numTickets.toInt() / 1000000);
+        }
+
+        //Create a thread for every 1 million tickets
+        for(int i = 0; i < numThreads; i++){
+            megaMillionsThread = new MegaMillionsThread(s_SelectedDirectory, 1000000);
+            connect(megaMillionsThread, &MegaMillionsThread::mmThreadStatus, this, &MainController::threadStatus);
+            megaMillionsThread->start();
+        }
+        megaMillionsThread = new MegaMillionsThread(s_SelectedDirectory, remainderTickets);
+        connect(megaMillionsThread, &MegaMillionsThread::mmThreadStatus, this, &MainController::threadStatus);
+        megaMillionsThread->start();
+    }
+    else{
+        megaMillionsThread = new MegaMillionsThread(s_SelectedDirectory, numTickets.toInt());
+        connect(megaMillionsThread, &MegaMillionsThread::mmThreadStatus, this, &MainController::threadStatus);
+        megaMillionsThread->start();
+    }
 }
 
 //Function to select a directory for storing number combination results.
@@ -61,7 +89,7 @@ void MainController::selectFileNumCheck(){
     emit nc_filePathToQml(fileName);
 }
 
-//Function to start the number checking thread
+//Function to start the powerball number checking thread
 void MainController::startNumCheckThread(QString n1, QString n2, QString n3, QString n4,
                                          QString n5, QString n6, QString game, QString type,
                                          QString path){
@@ -83,7 +111,3 @@ void MainController::threadStatus(QString s){
 void MainController::ncThreadStatus(QString s){
     emit ncthreadStatusToQml(s);
 }
-
-
-
-

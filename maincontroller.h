@@ -9,6 +9,7 @@
 #include <QString>
 #include <QDateTime>
 #include "powerballthread.h"
+#include "megamillionsthread.h"
 #include "numbercheckthread.h"
 
 class MainController:  public QWidget{
@@ -26,6 +27,7 @@ signals:
 
 public slots:
     void pickPowerballNums(QString);
+    void pickMegaMillionsNums(QString);
     void selectDirectory();
     void selectDirNumCheck();
     void selectFileNumCheck();
@@ -36,6 +38,7 @@ public slots:
 
 private:
     PowerballThread *powerballThread;
+    MegaMillionsThread *megaMillionsThread;
     NumberCheckThread *numberCheckThread;
     QString s_SelectedDirectory;
     int numThreads = 0;

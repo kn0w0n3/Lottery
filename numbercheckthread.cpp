@@ -23,7 +23,7 @@ void NumberCheckThread::run(){
                 QTextStream in(&file);
                 QString line;
 
-                while (!in.atEnd()) {
+                while (!in.atEnd()){
                     line = in.readLine();
                     //qDebug() << line; // Or do something else with the line
                     QStringList numbersToCheck = line.split(" ");
