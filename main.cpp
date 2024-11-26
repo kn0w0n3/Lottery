@@ -1,23 +1,26 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QApplication>
-#include <QQmlContext>
 #include "maincontroller.h"
+#include <QQmlContext>
+#include <QApplication>
 
+int main(int argc, char *argv[]){
 
-int main(int argc, char *argv[])
-{
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
+
     QApplication app(argc, argv);
+
+    //qmlRegisterType<MainController>("com.company.maincontroller",1,0,"Maincontroller");
     QQmlApplicationEngine engine;
     MainController mainController;
-    engine.rootContext()->setContextProperty("mainController", &mainController);
-    const QUrl url(u"qrc:/Lottery/main.qml"_qs); 
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-        &app, [url](QObject *obj, const QUrl &objUrl) {
-            if (!obj && url == objUrl)
-                QCoreApplication::exit(-1);
-        }, Qt::QueuedConnection);
-    engine.load(url);
 
+    engine.rootContext()->setContextProperty("mainController", &mainController);
+    //engine.rootContext()->setContextProperty("database", &database);
+
+    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    engine.load(url);
+   //app.setWindowIcon(QIcon(":/images/antigenx_icon.png"));
     return app.exec();
 }

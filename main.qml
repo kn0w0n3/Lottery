@@ -1,5 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Window 2.12
+import QtQuick.Layouts 1.12
 
 Window {
     width: 900
@@ -30,7 +32,6 @@ Window {
             checkNumsInfoWinTxt.text += nc_threadStatus + "\n"
         }
     }
-
 
     Rectangle {
         id: checkTicketWin
@@ -461,11 +462,12 @@ Window {
             width: 900
             height: 600
 
-            //For viewing in app
-            source: "/images/main-bg-900x600.png"
+            //For viewing in app. A bug with the way main
+            //is configured and the qml file not being a qrc file.
+            //source: "/images/main-bg-900x600.png"
 
             //For viewing in editor
-            //source: "images/main-bg-900x600.png"
+            source: "images/main-bg-900x600.png"
             fillMode: Image.PreserveAspectFit
         }
 
@@ -710,8 +712,6 @@ Window {
                 }
             }
         }
-
-
     }
 
     Rectangle {
@@ -725,37 +725,6 @@ Window {
         color: "#303030"
         border.color: "#000000"
 
-        Image {
-            id: homeBtnImg
-            x: 8
-            y: 24
-            width: 36
-            height: 41
-            visible: true
-
-            //For viewing in app
-            source: "/images/home_btn.png"
-
-            //For viewing in editor
-            //source: "images/home_btn.png"
-            smooth: true
-            layer.textureMirroring: ShaderEffectSource.MirrorVertically
-            layer.format: ShaderEffectSource.Alpha
-            clip: false
-            fillMode: Image.PreserveAspectFit
-
-            MouseArea {
-                id: mouseAreaHomeBtn
-                x: 0
-                y: 0
-                width: 36
-                height: 41
-                onClicked: {
-                    checkTicketWin.visible = false
-                    mainWin.visible = true
-                }
-            }
-        }
 
         Image {
             id: checkNumsBtn
@@ -771,10 +740,11 @@ Window {
             layer.textureMirroring: ShaderEffectSource.MirrorVertically
 
             //For viewing in app
-            source: "/images/check-btn.png"
+            //source: "/images/check-btn.png"
 
             //For viewing in editor
-            //source: "images/check-btn.png"
+            source: "images/check-btn.png"
+            z: 1
 
             MouseArea {
                 id: mouseAreaCheckBtn
@@ -783,6 +753,37 @@ Window {
                 onClicked: {
                     checkTicketWin.visible = true
                     mainWin.visible = false
+                }
+            }
+        }
+        Image {
+            id: homeBtnImg
+            x: 8
+            y: 24
+            width: 36
+            height: 41
+            visible: true
+
+            //For viewing in app
+            //source: "/images/home_btn.png"
+
+            //For viewing in editor
+            source: "images/home_btn.png"
+            smooth: true
+            layer.textureMirroring: ShaderEffectSource.MirrorVertically
+            layer.format: ShaderEffectSource.Alpha
+            clip: false
+            fillMode: Image.PreserveAspectFit
+
+            MouseArea {
+                id: mouseAreaHomeBtn
+                x: 0
+                y: 0
+                width: 36
+                height: 41
+                onClicked: {
+                    checkTicketWin.visible = false
+                    mainWin.visible = true
                 }
             }
         }
